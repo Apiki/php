@@ -1,14 +1,10 @@
-FROM php:7.3.9-fpm-alpine3.9
+FROM php:7.4.0-fpm-alpine3.10
 MAINTAINER mesaque.silva@apiki.com
 
 RUN apk update && \
 	apk upgrade && \
-	apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev libxml2-dev curl-dev  libmcrypt-dev libpq cyrus-sasl-dev libzip libzip-dev libmemcached-dev msmtp pcre-dev zlib-dev git zip bash vim sudo bind-tools libsodium-dev imagemagick-dev libmcrypt-dev && \
-  	docker-php-ext-configure gd \
-    --with-gd \
-    --with-freetype-dir=/usr/include/ \
-    --with-png-dir=/usr/include/ \
-    --with-jpeg-dir=/usr/include/ && \
+	apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev libxml2-dev curl-dev  libmcrypt-dev libpq cyrus-sasl-dev libzip libzip-dev libmemcached-dev msmtp pcre-dev zlib-dev git zip bash vim sudo bind-tools libsodium-dev libssh2-dev imagemagick-dev libmcrypt-dev && \
+  docker-php-ext-configure gd --with-freetype --with-jpeg && \
   NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
   docker-php-ext-install -j${NPROC} gd && \
   apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev
