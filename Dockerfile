@@ -26,6 +26,10 @@ RUN cd /usr/bin && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pa
 RUN docker-php-ext-install zip mysqli sockets soap calendar bcmath opcache exif iconv ftp
 RUN docker-php-ext-enable redis ssh2 imagick mcrypt memcached
 
+RUN mkdir -p /usr/local/etc/php/apiki /usr/local/smtp-client
+RUN ln -s /usr/local/etc/php/apiki/php.ini /usr/local/etc/php/conf.d/php-apiki.ini
+RUn ln -s /usr/local/smtp-client/msmtprc /etc/msmtprc
+
 RUN deluser www-data && deluser xfs
 RUN echo "www-data:x:33:33:Apiki WP Host,,,:/var/www:/bin/false" >> /etc/passwd && echo "www-data:x:33:www-data" >> /etc/group
 WORKDIR /WORDPRESS/www
