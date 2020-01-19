@@ -28,5 +28,5 @@ RUN docker-php-ext-enable redis ssh2 imagick mcrypt memcached
 
 RUN deluser www-data && deluser xfs
 RUN echo "www-data:x:33:33:Apiki WP Host,,,:/var/www:/bin/false" >> /etc/passwd && echo "www-data:x:33:www-data" >> /etc/group
-WORKDIR /var/www
+WORKDIR /WORDPRESS/www
 USER www-data
