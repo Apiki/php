@@ -1,4 +1,4 @@
-FROM php:7.4.4-fpm
+FROM php:7.4.7-fpm
 MAINTAINER mesaque.silva@apiki.com
 
 RUN apt-get update && apt-get install -y msmtp libzip-dev libxml2-dev libssl-dev imagemagick libmagickwand-dev libmagickcore-dev libmcrypt-dev libmemcached-dev
